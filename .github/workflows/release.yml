@@ -22,7 +22,7 @@ jobs:
       - name: Install cargo-binstall
         run: curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
       - name: Install cross
-        run: cargo binstall cross --git https://github.com/cross-rs/cross
+        run: cargo install cross --git https://github.com/cross-rs/cross
       - name: build
         run: cross build --release --target ${{ matrix.target }}
       - run: ls /target/${{ matrix.target }}/release
