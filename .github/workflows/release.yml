@@ -25,4 +25,4 @@ jobs:
         run: cargo install cross --git https://github.com/cross-rs/cross
       - name: build
         run: cross build --release --target ${{ matrix.target }}
-      - run: ls /target/${{ matrix.target }}/release
+      - run: ls target/${{ matrix.target }}/release
