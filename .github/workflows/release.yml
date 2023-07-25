@@ -4,14 +4,25 @@ on:
   workflow_dispatch:
     inputs:
       fail-fast:
-        description: 'Terminate all jobs if one fails.'
+        description: 'Terminate all jobs if one fails'
+        required: true
+        default: true
+        type: boolean
+      run-cross:
+        description: 'Run cross-compile on Linux'
+        required: true
+        default: true
+        type: boolean
+      run-apple:
+        description: 'Run job on macOS'
         required: true
         default: true
         type: boolean
 
 
 jobs:
-  build:
+  cross-compile:
+    if: ${{ inputs.run-cross }}
     permissions:
       contents: write
     runs-on: ubuntu-latest
@@ -65,4 +76,37 @@ jobs:
         with:
           draft: true
           files: ${{ format('solver-multi_{0}{1}', matrix.target, contains(matrix.target, 'windows') && '.exe' || '') }}
+        if: startsWith( github.ref, 'refs/tags/v' ) || contains(github.event.head_commit.message, 'test release')
+
+
+  build-for-mac:
+    if: ${{ inputs.run-apple }}
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Cache cargo & target directories
+        uses: Swatinem/rust-cache@v2
+        with:
+          key: "v2"
+      - name: Install latest rust toolchain
+        run: |
+          rustup stable update
+          rustup target install x86_64-apple-darwin
+          rustup target install aarch64-apple-darwin
+
+      - name: Build for mac
+        run: cargo build --release
+
+      - name: Rename artifact
+        run: >
+          cp
+          /target/x86_64-apple-darwin/release/solver-multi
+          solver-multi_x86_64-apple-darwin
+
+      - name: Publish GitHub release
+        uses: softprops/action-gh-release@v1
+        with:
+          draft: true
+          files: solver-multi_x86_64-apple-darwin
         if: startsWith( github.ref, 'refs/tags/v' ) || contains(github.event.head_commit.message, 'test release')
