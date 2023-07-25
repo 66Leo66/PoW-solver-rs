@@ -43,6 +43,27 @@ Benchmark 2: .\solver-single.exe MIa3OVQfKrrNBmpC 26
 ```
 So just use the multi-threaded one, and allow your computer to be laggy for a short period of time.
 
+## Avaliable targets
+You can find prebuilt binaries for the following targets at [releases](https://github.com/66Leo66/PoW-solver-rs/releases):
+- aarch64-linux-android
+- aarch64-unknown-linux-gnu
+- aarch64-unknown-linux-musl
+- armv7-unknown-linux-musleabihf
+- i686-pc-windows-gnu
+- i686-unknown-linux-gnu
+- mips64-unknown-linux-muslabi64
+- mips64el-unknown-linux-muslabi64
+- powerpc64-unknown-linux-gnu
+- powerpc64le-unknown-linux-gnu
+- riscv64gc-unknown-linux-gnu
+- x86_64-pc-windows-gnu
+- x86_64-unknown-freebsd
+- x86_64-unknown-linux-gnu
+- x86_64-unknown-linux-musl
+
+However, you should be able to build the application on every(maybe most) Rust-supported platforms.
+> Targets above is selected from [target supported by cross](https://github.com/cross-rs/cross#supported-targets) randomly.
+
 ## Credits
 I was going to use [RobinJadoul/proof-of-work](https://github.com/RobinJadoul/proof-of-work/) but it has no rust version, my PC has no golang environment, and it's single-threaded.
 
