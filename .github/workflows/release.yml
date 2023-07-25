@@ -1,5 +1,14 @@
 name: Build and Relaese
-on: [push]
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+      fail-fast:
+        description: 'Terminate all jobs if one fails.'
+        required: true
+        default: true
+        type: boolean
+
 
 jobs:
   build:
@@ -7,6 +16,7 @@ jobs:
       contents: write
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: ${{ inputs.fail-fast }}
       matrix:
         target:
           - aarch64-linux-android
