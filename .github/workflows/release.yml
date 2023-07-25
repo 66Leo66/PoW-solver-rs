@@ -57,17 +57,10 @@ jobs:
         uses: Swatinem/rust-cache@v2
         with:
           key: "v2"
-      - name: Install UBI
-        shell: bash
-        run: |
-          mkdir ~/bin
-          curl --silent --location \
-              https://raw.githubusercontent.com/houseabsolute/ubi/master/bootstrap/bootstrap-ubi.sh |
-              sh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Install cross
-        run: ~/bin/ubi --url https://github.com/cross-rs/cross/releases/download/v0.2.5/cross-x86_64-unknown-linux-musl.tar.gz
+        run: cargo install cross --git https://github.com/cross-rs/cross
       - name: build
         run: cross build --release --target ${{ matrix.target }}
       # - run: ls target/${{ matrix.target }}/release
@@ -88,6 +81,8 @@ jobs:
   build-for-mac:
     if: ${{ inputs.run-apple }}
     runs-on: macos-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v3
