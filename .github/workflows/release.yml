@@ -2,7 +2,7 @@ name: Build and Relaese
 on: [push]
 jobs:
   build:
-    runs-on: ununtu-latest
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         target:
