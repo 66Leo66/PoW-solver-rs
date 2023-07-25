@@ -39,5 +39,5 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           draft: true
-          files: ${{ format("target/{0}}/release/solver-multi{1}", matrix.target, contains(matrix.target, "windows") && ".exe" || "") }}
-        if: startsWith( github.ref, 'refs/tags/v' ) || contains(github.event.head_commit.message, "test release")
+          files: ${{ format('target/{0}}/release/solver-multi{1}', matrix.target, contains(matrix.target, 'windows') && '.exe' || '') }}
+        if: startsWith( github.ref, 'refs/tags/v' ) || contains(github.event.head_commit.message, 'test release')
