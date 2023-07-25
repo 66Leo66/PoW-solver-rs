@@ -12,5 +12,5 @@ ring = "0.16.20"
 
 [build.env]
 passthrough = [
-    "RUST_BACKTRACE"
+    "RUST_BACKTRACE=1"
 ]
