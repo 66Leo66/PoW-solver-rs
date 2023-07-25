@@ -96,13 +96,22 @@ jobs:
           rustup target install aarch64-apple-darwin
 
       - name: Build for mac
-        run: cargo build --release
+        run: cargo build --release --target x86_64-apple-darwin
+
+      - name: List directory
+        run: ls target
 
       - name: Rename artifact
         run: >
           cp
-          /target/x86_64-apple-darwin/release/solver-multi
+          target/x86_64-apple-darwin/release/solver-multi
           solver-multi_x86_64-apple-darwin
+
+      - name: Cross-compile Apple Silicon
+        run: cargo build --release --target aarch64-apple-darwin
+
+      - name: List directory
+        run: ls target
 
       - name: Publish GitHub release
         uses: softprops/action-gh-release@v1
