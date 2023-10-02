@@ -8,7 +8,7 @@ sha256(MIa3OVQfKrrNBmpC + ???) == 00000000000000000000000000(26)
 # Installtion
 
 - Cargo crate publish: soon
-- Prebuilt: soon
+- Prebuilt: check release
 
 ## Usage
 
