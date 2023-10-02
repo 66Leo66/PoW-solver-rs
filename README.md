@@ -46,6 +46,7 @@ So just use the multi-threaded one, and allow your computer to be laggy for a sh
 ## Avaliable targets
 You can find prebuilt binaries for the following targets at [releases](https://github.com/66Leo66/PoW-solver-rs/releases):
 - aarch64-linux-android
+- aarch64-apple-darwin
 - aarch64-unknown-linux-gnu
 - aarch64-unknown-linux-musl
 - armv7-unknown-linux-musleabihf
@@ -55,6 +56,7 @@ You can find prebuilt binaries for the following targets at [releases](https://g
 - x86_64-unknown-freebsd
 - x86_64-unknown-linux-gnu
 - x86_64-unknown-linux-musl
+- x86_64-apple-darwin
 
 ## Credits
 I was going to use [RobinJadoul/proof-of-work](https://github.com/RobinJadoul/proof-of-work/) but it has no rust version, my PC has no golang environment, and it's single-threaded.
