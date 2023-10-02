@@ -7,7 +7,7 @@ edition = "2021"
 
 [dependencies]
 byteorder = "1.4.3"
-rayon = "1.7.0"
+rayon = "1.8.0"
 ring = "0.16.20"
 
 [build.env]
