@@ -29,7 +29,7 @@ on:
 
 jobs:
   cross-compile:
-    if: ${{ inputs.run-cross }}
+    if: ${{ inputs.run-cross }} || github.event.issue.pull_request
     permissions:
       contents: write
     runs-on: ubuntu-latest
@@ -77,7 +77,7 @@ jobs:
           draft: true
           token: ${{ secrets.GITHUB_TOKEN }}
           files: ${{ format('solver-multi_{0}{1}', matrix.target, contains(matrix.target, 'windows') && '.exe' || '') }}
-        if: startsWith( github.ref, 'refs/tags/v' ) || contains(github.event.head_commit.message, 'test release') || ${{ inputs.publish-release }}
+        if: ${{ !github.event.issue.pull_request }} && startsWith( github.ref, 'refs/tags/v' ) || contains(github.event.head_commit.message, 'test release') || ${{ inputs.publish-release }}
 
 
   build-for-mac:
