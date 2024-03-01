@@ -1,6 +1,8 @@
 name: Build and Relaese
 on:
   push:
+  pull_request:
+    types: [opened, reopened, edited, synchronize]  
   workflow_dispatch:
     inputs:
       fail-fast:
