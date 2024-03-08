@@ -70,7 +70,7 @@ jobs:
           ${{ format('target/{0}/release/solver-multi{1}', matrix.target, contains(matrix.target, 'windows') && '.exe' || '') }}
           ${{ format('solver-multi_{0}{1}', matrix.target, contains(matrix.target, 'windows') && '.exe' || '') }}
       - name: Publish GitHub release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           draft: true
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -118,7 +118,7 @@ jobs:
         run: ls target
 
       - name: Publish GitHub release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           draft: true
           token: ${{ secrets.GITHUB_TOKEN }}
